@@ -1,36 +1,32 @@
 package myPacket.controllers;
 
-import myPacket.dao.CalculationRequest;
-import myPacket.RequestService;
-import myPacket.dao.CalculationResponse;
-import myPacket.dao.RequestDAO;
+import myPacket.dto.CalculationRequestDTO;
+import myPacket.dto.CalculationResponseDTO;
 import myPacket.request.Request;
+import myPacket.sevice.SecondService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class FirstController {
+    private final SecondService secondService;
 
-    private final RequestService requestService;
-    private final RequestDAO requestDAO;
-
-    public FirstController(RequestService requestService, RequestDAO requestDAO) {
-        this.requestService = requestService;
-        this.requestDAO = requestDAO;
+    public FirstController(SecondService secondService) {
+        this.secondService = secondService;
     }
 
 
     @PostMapping("/create")
-    public CalculationResponse returnRequest(
-            @RequestBody CalculationRequest smth) {
+    public CalculationResponseDTO returnRequest(
+            @RequestBody CalculationRequestDTO smth) {
 
-        requestDAO.setSmth(smth);
+        secondService.getRequestDTO().setSmth(smth);
 
-        String res = requestService.calculateResult(smth);
-        CalculationResponse response = new CalculationResponse(res);
+        String res = secondService.getFirstService().calculateResult(smth);
+        secondService.setCalculationResponseDTO(new CalculationResponseDTO(res));
 
         Request request = new Request(smth.getSymbol(), res);
-        requestService.saveRequest(request);
+        secondService.getFirstService().saveRequest(request);
 
-        return response;
+        return secondService.getCalculationResponseDTO();
     }
 }

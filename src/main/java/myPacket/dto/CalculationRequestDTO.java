@@ -1,6 +1,6 @@
-package myPacket.dao;
+package myPacket.dto;
 
-public class CalculationRequest {
+public class CalculationRequestDTO {
     private int a;
     private int b;
     private String symbol;

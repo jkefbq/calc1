@@ -1,43 +1,44 @@
-package myPacket;
+package myPacket.sevice;
 
-import myPacket.dao.CalculationRequest;
-import myPacket.dao.RequestDAO;
+import myPacket.dto.CalculationRequestDTO;
+import myPacket.dto.RequestDTO;
 import myPacket.request.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RequestService {
+public class FirstService {
 
-    private RequestDAO requestDAO;
+    private RequestDTO requestDTO;
 
     @Autowired
-    public RequestService(RequestDAO requestDAO) {
-        this.requestDAO = requestDAO;
+    public FirstService(RequestDTO requestDTO) {
+        this.requestDTO = requestDTO;
     }
 
-    public RequestService() {}
+    public FirstService() {}
 
     public void saveRequest(Request request) {
-        requestDAO.save(request);
+        requestDTO.save(request);
     }
 
     public Request findRequest(int id) {
-        return requestDAO.findById(id);
+        return requestDTO.findById(id);
     }
 
     public void deleteRequest(Request request) {
-        requestDAO.delete(request);
+        requestDTO.delete(request);
     }
 
     public void updateRequest(Request request) {
-        requestDAO.update(request);
+        requestDTO.update(request);
     }
 
+    public RequestDTO getRequestDTO() {
+        return requestDTO;
+    }
 
-
-
-    public String calculateResult(CalculationRequest smth) {
+    public String calculateResult(CalculationRequestDTO smth) {
         String result;
         int a = smth.getA();
         int b = smth.getB();

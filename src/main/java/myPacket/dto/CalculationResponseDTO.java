@@ -1,10 +1,10 @@
-package myPacket.dao;
+package myPacket.dto;
 
-public class CalculationResponse {
+public class CalculationResponseDTO {
     private String result;
 
-    public CalculationResponse() {}
-    public CalculationResponse(String result) {
+    public CalculationResponseDTO() {}
+    public CalculationResponseDTO(String result) {
         this.result = result;
     }
 

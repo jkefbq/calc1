@@ -1,4 +1,4 @@
-package myPacket.dao;
+package myPacket.dto;
 
 import myPacket.request.Request;
 import myPacket.util.HibernateSessionFactoryUtil;
@@ -8,8 +8,8 @@ import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class RequestDAO {
-    CalculationRequest smth;
+public class RequestDTO {
+    CalculationRequestDTO smth;
 
     public Request findById(int id) {
         return HibernateSessionFactoryUtil.getSessionFactory()
@@ -58,7 +58,7 @@ public class RequestDAO {
         session.close();
     }
 
-    public void setSmth(CalculationRequest smth) {
+    public void setSmth(CalculationRequestDTO smth) {
         this.smth = smth;
     }
 }
